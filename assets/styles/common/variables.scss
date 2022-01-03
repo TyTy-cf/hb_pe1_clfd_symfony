@@ -1,0 +1,8 @@
+
+$default-background-color: cyan;
+$default-red: rgba(255, 0, 0);
+$default-green: rgba(0, 255, 0);
+$default-green-10: darken($default-green, 25%);
+$default-red-10: lighten($default-red, 15%);
+
+$default-font-size: 16px;

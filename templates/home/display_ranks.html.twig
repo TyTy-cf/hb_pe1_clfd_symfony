@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+{% endblock %}
+
+{% block header %}
+    {# parent() => rappelle les informations du template étendu #}
+    {{ parent() }}
+    <p>ET DE RANK.HTML.TWIG</p>
+{% endblock %}
+
+{% block body %}
+
+    <div class="container-fluid">
+        <table class="table table-striped table-dark text-center table-hover">
+            <thead>
+                <tr>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if ranks|length > 0 %}
+                    {% for rank in ranks %}
+                    <tr>
+                        <td>{{ rank }}</td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td>Aucune note</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+        <div class="text-center">
+            <div>Notes</div>
+            <div class="row">
+                {% for rank in ranks %}
+                    <div class="col-12 text-center {% if rank < 10 %}red{% else %}green{% endif %}">
+                        {{ rank }}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
