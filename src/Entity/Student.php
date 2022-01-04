@@ -46,7 +46,7 @@ class Student
     private string $gender;
 
     /**
-     * @ORM\OneToMany(targetEntity=Rank::class, mappedBy="student", orphanRemoval=true)
+     * @ORM\ManyToMany(targetEntity=Rank::class)
      */
     private Collection $ranks;
 
@@ -131,8 +131,7 @@ class Student
     public function addRank(Rank $rank): self
     {
         if (!$this->ranks->contains($rank)) {
-            $this->ranks[] = $rank;
-            $rank->setStudent($this);
+            $this->ranks->add($rank);
         }
 
         return $this;
@@ -140,12 +139,7 @@ class Student
 
     public function removeRank(Rank $rank): self
     {
-        if ($this->ranks->removeElement($rank)) {
-            // set the owning side to null (unless already changed)
-            if ($rank->getStudent() === $this) {
-                $rank->setStudent(null);
-            }
-        }
+        $this->ranks->removeElement($rank);
 
         return $this;
     }

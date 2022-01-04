@@ -27,12 +27,6 @@ class Rank
      */
     private float $rank;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Student::class, inversedBy="ranks")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private Student $student;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -58,18 +52,6 @@ class Rank
     public function setRank(float $rank): self
     {
         $this->rank = $rank;
-
-        return $this;
-    }
-
-    public function getStudent(): ?Student
-    {
-        return $this->student;
-    }
-
-    public function setStudent(?Student $student): self
-    {
-        $this->student = $student;
 
         return $this;
     }

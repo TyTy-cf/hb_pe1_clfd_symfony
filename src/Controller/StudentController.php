@@ -31,4 +31,15 @@ class StudentController extends AbstractController
             'students' => $this->studentRepository->findAllStudents(),
         ]);
     }
+
+    /**
+     * @Route("/student/{id}", name="students_show")
+     */
+    public function show(string $id): Response
+    {
+        return $this->render('student/students_show.html.twig', [
+            // revient à faire un SELECT * FROM student
+            'student' => $this->studentRepository->findById($id)
+        ]);
+    }
 }

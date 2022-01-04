@@ -19,10 +19,19 @@ class StudentRepository extends ServiceEntityRepository
         parent::__construct($registry, Student::class);
     }
 
+    /**
+     * LEFTJOIN => prends toute les données de la table "initiale" (ici Student)
+     *  et ce même si la relation n'existe pas entre student et ranks
+     * Du coup, on a tous les étudiants avec et sans notes
+     *
+     * Avec un JOIN classique (INNERJOIN) => on aura que les étudiants qui ont des notes
+     *
+     * @return array
+     */
     public function findAllStudents(): array {
         return $this->createQueryBuilder('student')
             ->select('student', 'ranks')
-            ->join('student.ranks', 'ranks')
+            ->leftJoin('student.ranks', 'ranks')
             ->getQuery()
             ->getResult()
         ;
